@@ -1,0 +1,135 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB0DDA5F667D705564A3A',
+    participant: undefined
+  },
+  messageTimestamp: 1736458260,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'buenas',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'buenas',
+  from: '51962196883'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_64369538-8925-457e-b04a-1ecac16d41b8',
+  keyword: 'key_7d3af857-a5a5-4db2-8a20-dcdec8c0d1fe',
+  answer: 'Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'db4ebcaf196c1e1e769e74ceaaa5341d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_375db2eb-64dd-4a56-8aae-063995247cb4',
+  keyword: 'ans_64369538-8925-457e-b04a-1ecac16d41b8',
+  answer: 'Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'c613de2c1e3d0ec7037776cc024e9b0d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_89364323-d2de-4b00-888f-6a6d652fdab0',
+  keyword: 'ans_375db2eb-64dd-4a56-8aae-063995247cb4',
+  answer: 'https://daytonaautopartes.com/crear-cuenta',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '524a6cd385a254cdd7bc06d2570788f4'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5ea45060-a7de-45fb-9c19-d53803af0d87',
+  keyword: 'ans_89364323-d2de-4b00-888f-6a6d652fdab0',
+  answer: 'Si deseas seguir la atención por este medio escribe "si" 📝',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '1f7463f62f7935f240f5238a167b4dfe'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB02D5C856D812DAA192F',
+    participant: undefined
+  },
+  messageTimestamp: 1736458265,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'si',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'si',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB0133C9E7DA11FC8E1CF',
+    participant: undefined
+  },
+  messageTimestamp: 1736458280,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'cremallera accent',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'cremallera accent',
+  from: '51962196883'
+}
