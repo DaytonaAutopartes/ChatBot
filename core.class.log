@@ -2,26 +2,26 @@
   key: {
     remoteJid: '51962196883@s.whatsapp.net',
     fromMe: false,
-    id: '3EB0DDA5F667D705564A3A',
+    id: '7AAEC8F498B5448E866F609BA321CA5F',
     participant: undefined
   },
-  messageTimestamp: 1736458260,
+  messageTimestamp: 1736974468,
   pushName: 'Miller😊',
   broadcast: false,
   message: Message {
-    conversation: 'buenas',
+    conversation: 'Buenas',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2,
       messageSecret: [Uint8Array]
     }
   },
-  body: 'buenas',
+  body: 'Buenas',
   from: '51962196883'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_64369538-8925-457e-b04a-1ecac16d41b8',
-  keyword: 'key_7d3af857-a5a5-4db2-8a20-dcdec8c0d1fe',
+  ref: 'ans_dbf9a989-73da-4a2c-ad92-35149d4301ac',
+  keyword: 'key_dbd3e6bb-417a-4aa5-942c-cfdcb01ae221',
   answer: 'Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨',
   options: {
     media: null,
@@ -35,47 +35,47 @@
     keyword: {},
     callback: false
   },
-  refSerialize: 'db4ebcaf196c1e1e769e74ceaaa5341d'
+  refSerialize: '96eb6ca2690363bb5e1a4ee4aeac576a'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_375db2eb-64dd-4a56-8aae-063995247cb4',
-  keyword: 'ans_64369538-8925-457e-b04a-1ecac16d41b8',
+  ref: 'ans_a9ae5496-8343-461a-92ed-19dea15ad226',
+  keyword: 'ans_dbf9a989-73da-4a2c-ad92-35149d4301ac',
   answer: 'Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇',
   options: {
     media: null,
     buttons: [],
     capture: false,
     child: null,
-    delay: 0,
+    delay: 2000,
     idle: null,
     ref: null,
     nested: [],
     keyword: {},
     callback: false
   },
-  refSerialize: 'c613de2c1e3d0ec7037776cc024e9b0d'
+  refSerialize: '6755863f215f9d8a44815a3ee42a279d'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_89364323-d2de-4b00-888f-6a6d652fdab0',
-  keyword: 'ans_375db2eb-64dd-4a56-8aae-063995247cb4',
+  ref: 'ans_b1fc67f6-60d7-40f7-a6d9-e67266cbcd27',
+  keyword: 'ans_a9ae5496-8343-461a-92ed-19dea15ad226',
   answer: 'https://daytonaautopartes.com/crear-cuenta',
   options: {
     media: null,
     buttons: [],
     capture: false,
     child: null,
-    delay: 0,
+    delay: 2000,
     idle: null,
     ref: null,
     nested: [],
     keyword: {},
     callback: false
   },
-  refSerialize: '524a6cd385a254cdd7bc06d2570788f4'
+  refSerialize: '71d91d2b3767a31ffb3ac72d55f597a1'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_5ea45060-a7de-45fb-9c19-d53803af0d87',
-  keyword: 'ans_89364323-d2de-4b00-888f-6a6d652fdab0',
+  ref: 'ans_5d0463b0-9431-4824-a565-060b5f18047a',
+  keyword: 'ans_b1fc67f6-60d7-40f7-a6d9-e67266cbcd27',
   answer: 'Si deseas seguir la atención por este medio escribe "si" 📝',
   options: {
     media: null,
@@ -89,47 +89,626 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '1f7463f62f7935f240f5238a167b4dfe'
+  refSerialize: 'c209d1eceb5d29f29cab455c8dc1dd6a'
 }
 [handleMsg]:  {
   key: {
     remoteJid: '51962196883@s.whatsapp.net',
     fromMe: false,
-    id: '3EB02D5C856D812DAA192F',
+    id: '172EE47650682DB99DF0EDF87C6901BA',
     participant: undefined
   },
-  messageTimestamp: 1736458265,
+  messageTimestamp: 1736974501,
   pushName: 'Miller😊',
   broadcast: false,
   message: Message {
-    conversation: 'si',
+    conversation: 'Si',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2,
       messageSecret: [Uint8Array]
     }
   },
-  body: 'si',
+  body: 'Si',
   from: '51962196883'
 }
 [handleMsg]:  {
   key: {
     remoteJid: '51962196883@s.whatsapp.net',
     fromMe: false,
-    id: '3EB0133C9E7DA11FC8E1CF',
+    id: '72D9A64FDB11ABC301B2AF5E38EDCFE2',
     participant: undefined
   },
-  messageTimestamp: 1736458280,
+  messageTimestamp: 1736974518,
   pushName: 'Miller😊',
   broadcast: false,
   message: Message {
-    conversation: 'cremallera accent',
+    conversation: 'Silicona',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2,
       messageSecret: [Uint8Array]
     }
   },
-  body: 'cremallera accent',
+  body: 'Silicona',
   from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '39C2E2689AE211102B52143F78B0DA39',
+    participant: undefined
+  },
+  messageTimestamp: 1736974637,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: '6',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '6',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3B6B6E686332697A9BC28712C5056A1F',
+    participant: undefined
+  },
+  messageTimestamp: 1736974641,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: '5',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '5',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '67607E5D9DCD717A98ABA5CFF4932B79',
+    participant: undefined
+  },
+  messageTimestamp: 1736974653,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'Buenas',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Buenas',
+  from: '51962196883'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_dbf9a989-73da-4a2c-ad92-35149d4301ac',
+  keyword: 'key_dbd3e6bb-417a-4aa5-942c-cfdcb01ae221',
+  answer: 'Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '96eb6ca2690363bb5e1a4ee4aeac576a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_a9ae5496-8343-461a-92ed-19dea15ad226',
+  keyword: 'ans_dbf9a989-73da-4a2c-ad92-35149d4301ac',
+  answer: 'Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '6755863f215f9d8a44815a3ee42a279d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_b1fc67f6-60d7-40f7-a6d9-e67266cbcd27',
+  keyword: 'ans_a9ae5496-8343-461a-92ed-19dea15ad226',
+  answer: 'https://daytonaautopartes.com/crear-cuenta',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '71d91d2b3767a31ffb3ac72d55f597a1'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5d0463b0-9431-4824-a565-060b5f18047a',
+  keyword: 'ans_b1fc67f6-60d7-40f7-a6d9-e67266cbcd27',
+  answer: 'Si deseas seguir la atención por este medio escribe "si" 📝',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'c209d1eceb5d29f29cab455c8dc1dd6a'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: 'FE3CFD14BE76FDA4C8FCA7833FA16ECD',
+    participant: undefined
+  },
+  messageTimestamp: 1736974661,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'Si',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Si',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '124DC7638D5B19E2BA50B92FBAE6F992',
+    participant: undefined
+  },
+  messageTimestamp: 1736974676,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'Mesa',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Mesa',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '038A5F0109CA9366A08B840DD0074544',
+    participant: undefined
+  },
+  messageTimestamp: 1736974700,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '1',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: 'E423FA845A70E53EB879C2B4EE208900',
+    participant: undefined
+  },
+  messageTimestamp: 1736974730,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'Buenas',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Buenas',
+  from: '51962196883'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_dbf9a989-73da-4a2c-ad92-35149d4301ac',
+  keyword: 'key_dbd3e6bb-417a-4aa5-942c-cfdcb01ae221',
+  answer: 'Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '96eb6ca2690363bb5e1a4ee4aeac576a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_a9ae5496-8343-461a-92ed-19dea15ad226',
+  keyword: 'ans_dbf9a989-73da-4a2c-ad92-35149d4301ac',
+  answer: 'Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '6755863f215f9d8a44815a3ee42a279d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_b1fc67f6-60d7-40f7-a6d9-e67266cbcd27',
+  keyword: 'ans_a9ae5496-8343-461a-92ed-19dea15ad226',
+  answer: 'https://daytonaautopartes.com/crear-cuenta',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '71d91d2b3767a31ffb3ac72d55f597a1'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5d0463b0-9431-4824-a565-060b5f18047a',
+  keyword: 'ans_b1fc67f6-60d7-40f7-a6d9-e67266cbcd27',
+  answer: 'Si deseas seguir la atención por este medio escribe "si" 📝',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'c209d1eceb5d29f29cab455c8dc1dd6a'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '616C793333B9AAC381B9EA1EB173FB30',
+    participant: undefined
+  },
+  messageTimestamp: 1736974737,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'Si',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Si',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '4AE799D377992A21CC2563AD9A2CA19A',
+    participant: undefined
+  },
+  messageTimestamp: 1736974742,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    conversation: 'Foco delantero',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Foco delantero',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51942021769@s.whatsapp.net',
+    fromMe: false,
+    id: 'ADE14EF5A667F4C71B8F2C30BBE1BD17',
+    participant: undefined
+  },
+  messageTimestamp: 1736974807,
+  pushName: 'Hi',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/32703159_1371101037299184_8357995033943887260_n.enc?ccb=11-4&oh=01_Q5AaIDT2012vYXiTImQKuAfAzwY-ZjoTTn9QJBZmZc733YIt&oe=67AF907D&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 512,
+      width: 512,
+      directPath: '/v/t62.15575-24/32703159_1371101037299184_8357995033943887260_n.enc?ccb=11-4&oh=01_Q5AaIDT2012vYXiTImQKuAfAzwY-ZjoTTn9QJBZmZc733YIt&oe=67AF907D&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      contextInfo: [ContextInfo],
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '_event_media__86fffa8e-d4d6-4a25-b447-758d2de36c5c',
+  from: '51942021769'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51942021769@s.whatsapp.net',
+    fromMe: false,
+    id: 'F38ECDA9556DF5CFFD35E791CFD475F4',
+    participant: undefined
+  },
+  messageTimestamp: 1736974808,
+  pushName: 'Hi',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/32601618_1786892535486106_5404835302781904972_n.enc?ccb=11-4&oh=01_Q5AaIEcINUy2vNTQcZxIKktq_fDII_QUR_g5WM7N0ILofgsO&oe=67AF9FD4&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 512,
+      width: 512,
+      directPath: '/v/t62.15575-24/32601618_1786892535486106_5404835302781904972_n.enc?ccb=11-4&oh=01_Q5AaIEcINUy2vNTQcZxIKktq_fDII_QUR_g5WM7N0ILofgsO&oe=67AF9FD4&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '_event_media__0995fef6-d041-497c-a4d8-443e2cdbfa00',
+  from: '51942021769'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51942021769@s.whatsapp.net',
+    fromMe: false,
+    id: 'DA9533B55F2ED3E2DBDDCC1A00B88C5B',
+    participant: undefined
+  },
+  messageTimestamp: 1736974810,
+  pushName: 'Hi',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/382301582_1462197438037876_6274813018758969154_n.enc?ccb=11-4&oh=01_Q5AaIDoIgSldj5Dki-lsB52HWXqVqajXaofiKW7wn_BmC-9_&oe=67AF8AB2&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 512,
+      width: 512,
+      directPath: '/v/t62.15575-24/382301582_1462197438037876_6274813018758969154_n.enc?ccb=11-4&oh=01_Q5AaIDoIgSldj5Dki-lsB52HWXqVqajXaofiKW7wn_BmC-9_&oe=67AF8AB2&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '_event_media__d05e7d1a-f1cf-43cb-be63-c4d455133e05',
+  from: '51942021769'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51942021769@s.whatsapp.net',
+    fromMe: false,
+    id: '77CA21A4EDE25EF7E73EB26C89B569EF',
+    participant: undefined
+  },
+  messageTimestamp: 1736974812,
+  pushName: 'Hi',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/12101095_1642174899708758_4377247099668010806_n.enc?ccb=11-4&oh=01_Q5AaIPpVyW4N1-AOigDhWOL8Q1CBpCk52sBr_-vkJhvuuaJW&oe=67AF83A9&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 512,
+      width: 512,
+      directPath: '/v/t62.15575-24/12101095_1642174899708758_4377247099668010806_n.enc?ccb=11-4&oh=01_Q5AaIPpVyW4N1-AOigDhWOL8Q1CBpCk52sBr_-vkJhvuuaJW&oe=67AF83A9&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '_event_media__8d4b1e1e-52ce-4dd7-a158-3e2ae969359f',
+  from: '51942021769'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51942021769@s.whatsapp.net',
+    fromMe: false,
+    id: 'F9BCDEB064CA5E06D5A3BF6AF1329B4C',
+    participant: undefined
+  },
+  messageTimestamp: 1736974812,
+  pushName: 'Hi',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/40132590_615076574541445_5615663902049748217_n.enc?ccb=11-4&oh=01_Q5AaICn_vdEMXFmNamLNAQz79EjEIHDfFW-iPI-RksY2qnop&oe=67AFADF6&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 512,
+      width: 512,
+      directPath: '/v/t62.15575-24/40132590_615076574541445_5615663902049748217_n.enc?ccb=11-4&oh=01_Q5AaICn_vdEMXFmNamLNAQz79EjEIHDfFW-iPI-RksY2qnop&oe=67AFADF6&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '_event_media__4eb75dbc-b2c7-4248-9c7c-27851b8b96a5',
+  from: '51942021769'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51942021769@s.whatsapp.net',
+    fromMe: false,
+    id: '129A02E3EEE7A1BE1DF3808ABD238BD7',
+    participant: undefined
+  },
+  messageTimestamp: 1736974813,
+  pushName: 'Hi',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/31158356_617059544028662_5131812689555243312_n.enc?ccb=11-4&oh=01_Q5AaIPDdWb0VgHdpyW_EmZgOrqqFas7EEAskCrzigQGQpfsR&oe=67AF88F9&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 512,
+      width: 512,
+      directPath: '/v/t62.15575-24/31158356_617059544028662_5131812689555243312_n.enc?ccb=11-4&oh=01_Q5AaIPDdWb0VgHdpyW_EmZgOrqqFas7EEAskCrzigQGQpfsR&oe=67AF88F9&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '_event_media__dabd173e-8e7b-4590-bf94-43ffd14257b5',
+  from: '51942021769'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51942021769@s.whatsapp.net',
+    fromMe: false,
+    id: 'BE6E976DDA62AD2955A5340E783F2653',
+    participant: undefined
+  },
+  messageTimestamp: 1736974813,
+  pushName: 'Hi',
+  broadcast: false,
+  message: Message {
+    stickerMessage: StickerMessage {
+      url: 'https://mmg.whatsapp.net/v/t62.15575-24/12157860_979740750725203_3811349786907965306_n.enc?ccb=11-4&oh=01_Q5AaIObPCoSEW-LznvH5yJbp-zBIfyn99LjIHCa9iGs6V8WX&oe=67AF9C6C&_nc_sid=5e03e0&mms3=true',
+      fileSha256: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      mediaKey: [Uint8Array],
+      mimetype: 'image/webp',
+      height: 512,
+      width: 512,
+      directPath: '/v/t62.15575-24/12157860_979740750725203_3811349786907965306_n.enc?ccb=11-4&oh=01_Q5AaIObPCoSEW-LznvH5yJbp-zBIfyn99LjIHCa9iGs6V8WX&oe=67AF9C6C&_nc_sid=5e03e0',
+      fileLength: [Long],
+      mediaKeyTimestamp: [Long],
+      isAnimated: false,
+      stickerSentTs: [Long],
+      isAvatar: false
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '_event_media__07167d70-89e1-4659-adfe-97d631f04860',
+  from: '51942021769'
 }
