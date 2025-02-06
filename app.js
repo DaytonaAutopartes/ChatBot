@@ -12,13 +12,14 @@ const MYSQL_DB_PASSWORD = 'Miller2001*';
 const MYSQL_DB_NAME = 'test';
 const MYSQL_DB_PORT = '3306';
 
-const NumVendor = '51962196883'; // Número de WhatsApp Business
+
+const NumVendor = '51945852553'; // Número de WhatsApp Business
 let nombreGlobal = ''; // Variable global para almacenar el nombre
 let clienteGlobal = ''; // Variable global para almacenar el nombre del cliente
 
 // Flujo para calificación
 const flowCalificacion = addKeyword('calificacion')
-    .addAnswer('Por favor califica nuestro servicio de 1 a 5 estrellas. 🌟', { capture: true }, async (ctx, { flowDynamic, fallBack }) => {
+    .addAnswer('Por favor califica nuestro servicio de 1 a 5 estrellas. 🌟', { capture: true, delay: 2000 }, async (ctx, { flowDynamic, fallBack }) => {
         const calificacion = parseInt(ctx.body);
         if (isNaN(calificacion) || calificacion < 1 || calificacion > 5) {
             return fallBack();  
@@ -49,13 +50,15 @@ const flowCalificacion = addKeyword('calificacion')
         });
 
         connection.end();
+        delay(5000);
         await flowDynamic('¡Gracias por tu calificación! 🌟');
+        await flowDynamic('Recuerda que estare disponible para ayudarte en lo que necesites.🛒✨');
     }
     });
 
 // Flujo para búsqueda de productos para usuarios registrados
 const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
-    .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
+    .addAnswer('¿Qué producto deseas comprar? 🛍️',  { capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
         const NomProd = ctx.body;
 
         function generarEnlaceDeBusqueda(palabraClave) {
@@ -111,7 +114,7 @@ const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
 
 // Flujo para búsqueda de productos para usuarios no registrados
 const flowEnlace_two = addKeyword('@')
-    .addAnswer('Para un mejor resultado por favor escribe el nombre de tu producto más el modelo de vehículo. 🚗🔧')
+    .addAnswer('Para un mejor resultado por favor escribe en un solo mensaje el nombre de tu producto más el modelo de vehículo. 🚗🔧 : *punta de palier kia picanto*')
     .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
         const NomProd = ctx.body;
 
@@ -168,7 +171,7 @@ const flowEnlace_two = addKeyword('@')
 
 // Flujo para obtener datos de usuarios no registrados
 const flowDatos = addKeyword('USUARIOS_NO_REGISTRADOS')
-    .addAnswer('Es tu primera vez en nuestra tienda en línea. Por favor, proporciona tus datos para continuar. 📝')
+    .addAnswer('Es tu primera vez en nuestra tienda en línea. Por favor, proporciona tus datos por unica vez para continuar. 📝')
     .addAnswer('Por favor, proporciona tu nombre completo:', { capture: true }, async (ctx) => {
         const nombre = ctx.body;
         console.log("Nombre del cliente:", nombre);
@@ -212,10 +215,10 @@ const flowDatos = addKeyword('USUARIOS_NO_REGISTRADOS')
     });
 
 // Flujos principales
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo', 'buenas', 'buena', 'ola'])
+const flowPrincipal = addKeyword(['hola', 'ole', 'alo', 'buenas', 'buena', 'ola', 'buenos', 'dias', 'tardes', 'noches', 'hola!', 'hola.', 'hola?', 'hola!', 'hola?', 'hola.', 'hola!','tiene','tiene?','tiene.','tiene!','tiene!','tiene?','tiene.'])
     .addAnswer('Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨')
     .addAnswer('Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇', {delay:2000})
-    .addAnswer('https://daytonaautopartes.com/crear-cuenta', {delay: 2000})
+    .addAnswer('https://daytonaautopartes.com/iniciar-sesion?create_account=1', {delay: 2000})
     .addAnswer('Si deseas seguir la atención por este medio escribe "si" 📝', { capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
         console.log(ctx);
         const numero = ctx.from;
