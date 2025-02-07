@@ -15,12 +15,17 @@
         "@bot-whatsapp/database": "latest",
         "@bot-whatsapp/portal": "latest",
         "@bot-whatsapp/provider": "latest",
+        "@google/generative-ai": "^0.21.0",
         "@whiskeysockets/baileys": "6.5.0",
         "cache-manager": "5.2.4",
+        "dotenv": "^16.4.7",
+        "fuse.js": "^7.1.0",
         "mysql": "^2.18.1",
         "mysql2": "^3.12.0",
+        "openai": "^4.83.0",
         "playwright": "^1.49.1",
-        "wa-sticker-formatter": "4.4.4"
+        "wa-sticker-formatter": "4.4.4",
+        "xlsx": "^0.18.5"
     },
     "devDependencies": {
         "eslint": "^8.52.0",
