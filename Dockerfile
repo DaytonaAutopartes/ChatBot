@@ -6,6 +6,6 @@ COPY . .
 ARG RAILWAY_STATIC_URL
 ARG PUBLIC_URL
 ARG PORT
-CMD ["npm", "start"]
 RUN npx playwright install --with-deps
+CMD ["npm", "start"]
 
