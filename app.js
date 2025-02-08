@@ -21,7 +21,7 @@ let clienteGlobal = '';
 
 // Flujo para calificación
 const flowCalificacion = addKeyword('calificacion')
-    .addAnswer('Por favor califica nuestro servicio de 1 a 5 estrellas. 🌟', { capture: true, delay: 2000 }, async (ctx, { flowDynamic, fallBack }) => {
+    .addAnswer('Por favor califica nuestro servicio de 1 a 5 estrellas. 🌟', { capture: true, delay: 50000 }, async (ctx, { flowDynamic, fallBack }) => {
         const calificacion = parseInt(ctx.body);
         if (isNaN(calificacion) || calificacion < 1 || calificacion > 5) {
             return fallBack();  
