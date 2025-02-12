@@ -1,0 +1,430 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB0D0788C06BA35ADA003',
+    participant: undefined
+  },
+  messageTimestamp: 1739397006,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'hola',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'hola',
+  from: '51962196883'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_bed05f46-4686-4202-a4c1-9bcfcc8c22f2',
+  keyword: 'key_15ca66da-f03b-4c4d-b8e1-d72e15bdcb77',
+  answer: 'Hola, soy Dayana tu asistente virtual. ¿En qué puedo ayudarte hoy? 🤖',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'b2d3c63c94daacfa1df7a9c884c72f1a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_7bde5b96-2cde-4edd-8ada-e5499d23313c',
+  keyword: 'ans_bed05f46-4686-4202-a4c1-9bcfcc8c22f2',
+  answer: 'Por favor escribe el número de la opción que deseas:\n' +
+    '1. 🛒 Comprar producto\n' +
+    '2. 📦 Rastrear pedido',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'bdc706bf5f3810066462dd0d5d1b0b39'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB0B69FCE2922B65265B8',
+    participant: undefined
+  },
+  messageTimestamp: 1739397011,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: '1',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '1',
+  from: '51962196883'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_674c81fe-e923-4d45-b3c1-e11f8eeb746e',
+  keyword: 'key_2c811fd0-d95b-4b79-84ea-319241271031',
+  answer: 'Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'ab74457cb325956d252d6c10306a80bb'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_89031a48-3c48-42c1-837e-1c63fc21f97a',
+  keyword: 'ans_674c81fe-e923-4d45-b3c1-e11f8eeb746e',
+  answer: 'Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '8325691c8dc89e8ba2e7451896ea263d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6a413c1c-d5d6-4bff-956b-adeeec50d281',
+  keyword: 'ans_89031a48-3c48-42c1-837e-1c63fc21f97a',
+  answer: 'https://daytonaautopartes.com/crear-cuenta',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '38df5d79fd3d9b0460e37770df066da7'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f5e38fb8-8b73-4b8b-b769-bed678ec30bc',
+  keyword: 'ans_6a413c1c-d5d6-4bff-956b-adeeec50d281',
+  answer: 'Si deseas seguir la atención por este medio escribe "si" 📝',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '4550a84baf379e58ea7e4da90967dcd9'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB080D0884C8520472F36',
+    participant: undefined
+  },
+  messageTimestamp: 1739397021,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'si',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'si',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB0E5EA591635ACB601F9',
+    participant: undefined
+  },
+  messageTimestamp: 1739397040,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'soldimix',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'soldimix',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB06C6CCE4306BEBFF5D4',
+    participant: undefined
+  },
+  messageTimestamp: 1739397111,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: '1',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '1',
+  from: '51962196883'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_674c81fe-e923-4d45-b3c1-e11f8eeb746e',
+  keyword: 'key_2c811fd0-d95b-4b79-84ea-319241271031',
+  answer: 'Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'b6af94539fdba156f0b891c031924c6d'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_89031a48-3c48-42c1-837e-1c63fc21f97a',
+  keyword: 'ans_674c81fe-e923-4d45-b3c1-e11f8eeb746e',
+  answer: 'Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'fff6ca8320e9623fb27a53b7147b298e'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6a413c1c-d5d6-4bff-956b-adeeec50d281',
+  keyword: 'ans_89031a48-3c48-42c1-837e-1c63fc21f97a',
+  answer: 'https://daytonaautopartes.com/crear-cuenta',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '5ff6822b6f8299ac7ee6c85b04a0aeca'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f5e38fb8-8b73-4b8b-b769-bed678ec30bc',
+  keyword: 'ans_6a413c1c-d5d6-4bff-956b-adeeec50d281',
+  answer: 'Si deseas seguir la atención por este medio escribe "si" 📝',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'be398a36e160c3182982d6fab0e04194'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB03C022EE7BA6C3C5187',
+    participant: undefined
+  },
+  messageTimestamp: 1739397133,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'si',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'si',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB057352A6C1E10397FE1',
+    participant: undefined
+  },
+  messageTimestamp: 1739397171,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: 'soldimix',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'soldimix',
+  from: '51962196883'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB072A70D0A8B01E6E31F',
+    participant: undefined
+  },
+  messageTimestamp: 1739397202,
+  pushName: 'Miller😊',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage {
+      text: '2',
+      contextInfo: [ContextInfo],
+      inviteLinkGroupTypeV2: 0
+    },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '2',
+  from: '51962196883'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_bed05f46-4686-4202-a4c1-9bcfcc8c22f2',
+  keyword: 'key_15ca66da-f03b-4c4d-b8e1-d72e15bdcb77',
+  answer: 'Hola, soy Dayana tu asistente virtual. ¿En qué puedo ayudarte hoy? 🤖',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'b2d3c63c94daacfa1df7a9c884c72f1a'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_7bde5b96-2cde-4edd-8ada-e5499d23313c',
+  keyword: 'ans_bed05f46-4686-4202-a4c1-9bcfcc8c22f2',
+  answer: 'Por favor escribe el número de la opción que deseas:\n' +
+    '1. 🛒 Comprar producto\n' +
+    '2. 📦 Rastrear pedido',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'bdc706bf5f3810066462dd0d5d1b0b39'
+}

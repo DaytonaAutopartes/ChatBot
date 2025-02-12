@@ -8,7 +8,7 @@ async function interpretarMensaje(mensaje) {
     try {
         // Pedimos solo el JSON sin formato adicional
         const prompt = `Extrae únicamente el nombre del repuesto (producto de auto) y el modelo de vehículo del siguiente mensaje: "${mensaje}". 
-        Devuelve solo un JSON con las claves "producto" y "modelo", sin texto adicional ni etiquetas de código, tampoco año solo producto y modelo.`;
+        Devuelve solo un JSON con las claves "producto" y "modelo", sin texto adicional ni etiquetas de código, tampoco año solo producto y modelo. Pero si es un mensaje de solo producto, devolver solo ese campo.`;
 
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
         const result = await model.generateContent(prompt);
