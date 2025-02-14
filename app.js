@@ -32,10 +32,16 @@ let productoGlobal = '';
 let url1 = `https://api.whatsapp.com/send?phone=${NumVendor}&text=Hola, Soy ${clienteGlobal} encontre  *${productoGlobal}* en la pagina web, me podrias ayudar`;
 let encodedUrl1 = url1.replace(/ /g, '+');
 
+
+const flujoFinal = addKeyword(EVENTS.ACTION)
+    .addAnswer('Se canceló por inactividad. Si necesitas ayuda, por favor escribe "Hola" para empezar de nuevo.', { capture: true }, async (ctx, { gotoFlow }) => {
+        return gotoFlow(flowPrincipal);
+    });
+
 // Flujo para calificación
-const flowCalificacion = addKeyword(['calificacion', '1'])
+const flowCalificacion = addKeyword('calificacion')
     .addAnswer('Gracias, recuerda que puedes empezar de nuevo escribiendo "Hola". 🤖')
-    .addAnswer('Por favor califica nuestro servicio de 1 a 5 estrellas. 🌟', {capture: true }, async (ctx, { flowDynamic, fallBack }) => {
+    .addAnswer('Por favor califica nuestro servicio de 1 a 5 estrellas. 🌟', { capture: true }, async (ctx, { flowDynamic, fallBack }) => {
         const calificacion = parseInt(ctx.body);
         if (isNaN(calificacion) || calificacion < 1 || calificacion > 5) {
             return fallBack();
@@ -68,11 +74,11 @@ const flowCalificacion = addKeyword(['calificacion', '1'])
         }
     });
 
-const flowNo = addKeyword(['no', '2'])
+const flowNo = addKeyword('noencontre')
     .addAnswer('Si no encontraste el producto que deseas, ingresa aquí para hablar con un agente de ventas📲:')
     .addAnswer(`https://api.whatsapp.com/send?phone=${NumVendor}&text=Hola,+quiero+ayuda+con+un+producto+🚗`)
     .addAnswer('Gracias, recuerda que puedes empezar de nuevo escribiendo "Hola". 🤖')
-    .addAnswer('Por favor califica nuestro servicio de 1 a 5 estrellas. 🌟', {capture: true }, async (ctx, { flowDynamic, fallBack }) => {
+    .addAnswer('Por favor califica nuestro servicio de 1 a 5 estrellas. 🌟', { capture: true }, async (ctx, { flowDynamic, fallBack }) => {
         const calificacion = parseInt(ctx.body);
         if (isNaN(calificacion) || calificacion < 1 || calificacion > 5) {
             return fallBack();
@@ -105,14 +111,31 @@ const flowNo = addKeyword(['no', '2'])
         }
     });
 
+//const flowLink = addKeyword('pregunta')
+   // .addAnswer(['Encontraste el producto que buscabas?',
+    //    '1. Si',
+     //   '2. No'
+  //  ],
+    //    null,
+    //    null,
+    //    [flowCalificacion, flowNo]);
+
 const flowLink = addKeyword('pregunta')
-    .addAnswer(['Encontraste el producto que buscabas?',
+    .addAnswer(['Encontraste el producto que buscabas?', 
         '1. Si',
         '2. No'
-    ],
-        null,
-        null,
-        [flowCalificacion, flowNo]);
+    ], { capture: true, idle: 60000 }, async (ctx, { gotoFlow }) => {
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
+        const respuesta = ctx.body;
+        if (respuesta === '1') {
+            return gotoFlow(flowCalificacion);
+        } else if (respuesta === '2') {
+            return gotoFlow(flowNo);
+        }
+    });
+
 
 
 // Flujo para búsqueda de productos para usuarios registrados
@@ -152,7 +175,7 @@ const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
         if (productos.length > 0) {
             for (const producto of productos) {
                 if (producto) {
-   
+
                     const mensaje = `🚗 *Producto:* ${producto.title}\n💲 *Precio:* ${producto.price}\n 🛒*Comprar:* ${producto.link}`;
                     await flowDynamic(mensaje, { media: producto.image });
                 }
@@ -160,7 +183,7 @@ const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
 
             await flowDynamic('Ingresa aqui para mas resultados: ' + enlaceCliente, { delay: 10000 });
 
-          return gotoFlow(flowLink);
+            return gotoFlow(flowLink);
         } else {
             let url = `https://api.whatsapp.com/send?phone=${NumVendor}&text=Hola, Soy ${clienteGlobal} no encontre  *${palabra}* en la pagina web, me podrias ayudar?`;
             let encodedUrl = url.replace(/ /g, '+');
@@ -207,7 +230,7 @@ const flowEnlace_two = addKeyword('@')
         if (productos.length > 0) {
             for (const producto of productos) {
                 if (producto) {
-   
+
                     const mensaje = `🚗 *Producto:* ${producto.title}\n💲 *Precio:* ${producto.price}\n 🛒*Comprar:* ${producto.link}`;
                     await flowDynamic(mensaje, { media: producto.image });
                 }
@@ -215,7 +238,7 @@ const flowEnlace_two = addKeyword('@')
 
             await flowDynamic('Ingresa aqui para mas resultados: ' + enlaceCliente, { delay: 10000 });
 
-          return gotoFlow(flowLink);
+            return gotoFlow(flowLink);
         } else {
             let url = `https://api.whatsapp.com/send?phone=${NumVendor}&text=Hola, Soy ${clienteGlobal} no encontre  *${palabra}* en la pagina web, me podrias ayudar?`;
             let encodedUrl = url.replace(/ /g, '+');
@@ -265,11 +288,15 @@ const flowDatos = addKeyword('USUARIOS_NO_REGISTRADOS')
     });
 
 // Flujos principales
+// Modifica los flujos existentes para incluir la lógica de inactividad
 const flowComprar = addKeyword(['1', 'comprar', 'producto'])
     .addAnswer('Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨')
     .addAnswer('Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇', { delay: 2000 })
     .addAnswer('https://daytonaautopartes.com/crear-cuenta', { delay: 2000 })
-    .addAnswer('Si deseas seguir la atención por este medio escribe "si" 📝', { capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
+    .addAnswer('Si deseas seguir la atención por este medio escribe "si" 📝', { capture: true, idle: 60000 }, async (ctx, { flowDynamic, gotoFlow }) => {
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
         console.log(ctx);
         const numero = ctx.from;
 
@@ -301,8 +328,12 @@ const flowComprar = addKeyword(['1', 'comprar', 'producto'])
         });
     });
 
+// Aplica la misma lógica de inactividad a otros flujos según sea necesario
 const flowRastrear = addKeyword(['2', 'rastrear', 'pedido'])
-    .addAnswer('Para rastrear tu pedido, por favor ingresa tu número de pedido. 🚚📦', { media: 'https://daytonaautopartes.com/bot/Numero%20de%20Comprobante.png', capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
+    .addAnswer('Para rastrear tu pedido, por favor ingresa tu número de pedido. 🚚📦', { media: 'https://daytonaautopartes.com/bot/Numero%20de%20Comprobante.png', capture: true, idle: 60000 }, async (ctx, { flowDynamic, gotoFlow }) => {
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
         const numeroPedido = ctx.body;
         console.log(`Número de pedido recibido: ${numeroPedido}`);
         try {
@@ -319,20 +350,26 @@ const flowRastrear = addKeyword(['2', 'rastrear', 'pedido'])
         }
     });
 
-
+// Asegúrate de incluir el flujo final en el flujo principal
 const flowPrincipal = addKeyword(EVENTS.WELCOME)
     .addAnswer('Hola, soy Dayana tu asistente virtual. ¿En qué puedo ayudarte hoy? 🤖')
     .addAnswer([
         'Por favor escribe el número de la opción que deseas:',
         '1. 🛒 Comprar producto',
         '2. 📦 Rastrear pedido',
-    ], null, null, [flowComprar, flowRastrear]);
+    ], { capture: true, idle: 60000 }, async (ctx, { gotoFlow }) => {
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
+    }, [flowComprar, flowRastrear]);
+
+
 
 
 
 const main = async () => {
     const adapterDB = new MockAdapter();
-    const adapterFlow = createFlow([flowPrincipal, flowDatos, flowEnlace, flowEnlace_two, flowCalificacion, flowComprar]);
+    const adapterFlow = createFlow([flowPrincipal, flowDatos, flowEnlace, flowEnlace_two, flowCalificacion, flowComprar, flujoFinal]);
     const adapterProvider = createProvider(BaileysProvider);
 
     createBot({
