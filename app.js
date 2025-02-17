@@ -11,17 +11,17 @@ const { shortenUrl } = require('./acortar');
 
 require('dotenv').config();
 
-// const MYSQL_DB_HOST = process.env.MYSQL_DB_HOST;
-// const MYSQL_DB_USER = process.env.MYSQL_DB_USER;
-// const MYSQL_DB_PASSWORD = process.env.MYSQL_DB_PASSWORD;
-// const MYSQL_DB_NAME = process.env.MYSQL_DB_NAME;
-// const MYSQL_DB_PORT = process.env.MYSQL_DB_PORT || '3306';
+const MYSQL_DB_HOST = process.env.MYSQL_DB_HOST;
+const MYSQL_DB_USER = process.env.MYSQL_DB_USER;
+const MYSQL_DB_PASSWORD = process.env.MYSQL_DB_PASSWORD;
+const MYSQL_DB_NAME = process.env.MYSQL_DB_NAME;
+const MYSQL_DB_PORT = process.env.MYSQL_DB_PORT || '3306';
 
-const MYSQL_DB_HOST = 'localhost';
-const MYSQL_DB_USER = 'Miller';
-const MYSQL_DB_PASSWORD = 'Miller2001*';
-const MYSQL_DB_NAME = 'test';
-const MYSQL_DB_PORT = '3306';
+//const MYSQL_DB_HOST = 'localhost';
+//const MYSQL_DB_USER = 'Miller';
+//const MYSQL_DB_PASSWORD = 'Miller2001*';
+//const MYSQL_DB_NAME = 'test';
+//const MYSQL_DB_PORT = '3306';
 
 
 const NumVendor = '51945852553';
@@ -140,8 +140,12 @@ const flowLink = addKeyword('pregunta')
 
 // Flujo para búsqueda de productos para usuarios registrados
 const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
-    .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
+    .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true, idle: 300000 }, async (ctx, { flowDynamic, gotoFlow }) => {
         // Llamada a la IA para interpretar el mensaje
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
+
         const NomProd = await interpretarMensaje(ctx.body);
         console.log("Producto interpretado:", NomProd);
         productoGlobal = NomProd;
@@ -171,7 +175,7 @@ const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
         }));
 
         await browser.close();
-        await flowDynamic('🚨Para comprar el producto ingresar en link');
+        await flowDynamic('🚨*PARA COMPRAR EL PRODUCTO INGRESA AL LINK*');
         if (productos.length > 0) {
             for (const producto of productos) {
                 if (producto) {
@@ -195,8 +199,12 @@ const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
 // Flujo para búsqueda de productos para usuarios no registrados
 const flowEnlace_two = addKeyword('@')
     .addAnswer('Para un mejor resultado por favor escribe el nombre de tu producto más el modelo de vehículo. 🚗🔧')
-    .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
+    .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true, idle: 300000 }, async (ctx, { flowDynamic, gotoFlow }) => {
         // Llamada a la IA para interpretar el mensaje
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
+        
         const NomProd = await interpretarMensaje(ctx.body);
         console.log("Producto interpretado:", NomProd);
         productoGlobal = NomProd;
@@ -226,7 +234,7 @@ const flowEnlace_two = addKeyword('@')
         }));
 
         await browser.close();
-        await flowDynamic('🚨Para comprar el producto ingresar en link');
+        await flowDynamic('🚨*PARA COMPRAR EL PRODDUCTO INGRESA AL LINK*');
         if (productos.length > 0) {
             for (const producto of productos) {
                 if (producto) {
@@ -250,12 +258,18 @@ const flowEnlace_two = addKeyword('@')
 // Flujo para obtener datos de usuarios no registrados
 const flowDatos = addKeyword('USUARIOS_NO_REGISTRADOS')
     .addAnswer('Es tu primera vez en nuestra tienda en línea. Por favor, proporciona tus datos para continuar. 📝')
-    .addAnswer('Por favor, proporciona tu nombre completo:', { capture: true }, async (ctx) => {
+    .addAnswer('Por favor, proporciona tu nombre completo:', { capture: true, idle: 300000 }, async (ctx) => {
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
         const nombre = ctx.body;
         console.log("Nombre del cliente:", nombre);
         nombreGlobal = nombre;
     })
-    .addAnswer('Por favor, proporciona tu correo electrónico:', { capture: true }, async (ctx, { fallBack, flowDynamic }) => {
+    .addAnswer('Por favor, proporciona tu correo electrónico:', { capture: true, idle: 30000 }, async (ctx, { fallBack, flowDynamic }) => {
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
         const email = ctx.body;
         if (!email.includes('@')) {
             await flowDynamic('Por favor, ingresa un correo electrónico válido. 📧');
@@ -291,8 +305,8 @@ const flowDatos = addKeyword('USUARIOS_NO_REGISTRADOS')
 // Modifica los flujos existentes para incluir la lógica de inactividad
 const flowComprar = addKeyword(['1', 'comprar', 'producto'])
     .addAnswer('Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨')
-    .addAnswer('Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇', { delay: 2000 })
-    .addAnswer('https://daytonaautopartes.com/crear-cuenta', { delay: 2000 })
+    .addAnswer('Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇')
+    .addAnswer('https://daytonaautopartes.com/crear-cuenta')
     .addAnswer('Si deseas seguir la atención por este medio escribe "si" 📝', { capture: true, idle: 60000 }, async (ctx, { flowDynamic, gotoFlow }) => {
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
@@ -330,7 +344,7 @@ const flowComprar = addKeyword(['1', 'comprar', 'producto'])
 
 // Aplica la misma lógica de inactividad a otros flujos según sea necesario
 const flowRastrear = addKeyword(['2', 'rastrear', 'pedido'])
-    .addAnswer('Para rastrear tu pedido, por favor ingresa tu número de pedido. 🚚📦', { media: 'https://daytonaautopartes.com/bot/Numero%20de%20Comprobante.png', capture: true, idle: 60000 }, async (ctx, { flowDynamic, gotoFlow }) => {
+    .addAnswer('Para rastrear tu pedido, por favor ingresa tu número de pedido. 🚚📦', { media: 'https://daytonaautopartes.com/bot/Numero%20de%20Comprobante.png', capture: true, idle: 300000 }, async (ctx, { flowDynamic, gotoFlow }) => {
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
         }
@@ -357,7 +371,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
         'Por favor escribe el número de la opción que deseas:',
         '1. 🛒 Comprar producto',
         '2. 📦 Rastrear pedido',
-    ], { capture: true, idle: 60000 }, async (ctx, { gotoFlow }) => {
+    ], { capture: true, idle: 300000 }, async (ctx, { gotoFlow }) => {
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
         }
