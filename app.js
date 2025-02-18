@@ -17,13 +17,6 @@ const MYSQL_DB_PASSWORD = process.env.MYSQL_DB_PASSWORD;
 const MYSQL_DB_NAME = process.env.MYSQL_DB_NAME;
 const MYSQL_DB_PORT = process.env.MYSQL_DB_PORT || '3306';
 
-//const MYSQL_DB_HOST = 'localhost';
-//const MYSQL_DB_USER = 'Miller';
-//const MYSQL_DB_PASSWORD = 'Miller2001*';
-//const MYSQL_DB_NAME = 'test';
-//const MYSQL_DB_PORT = '3306';
-
-
 const NumVendor = '51945852553';
 let nombreGlobal = '';
 let clienteGlobal = '';
@@ -32,7 +25,7 @@ let productoGlobal = '';
 let url1 = `https://api.whatsapp.com/send?phone=${NumVendor}&text=Hola, Soy ${clienteGlobal} encontre  *${productoGlobal}* en la pagina web, me podrias ayudar`;
 let encodedUrl1 = url1.replace(/ /g, '+');
 
-
+// Flujo final
 const flujoFinal = addKeyword(EVENTS.ACTION)
     .addAnswer('Se canceló por inactividad. Si necesitas ayuda, por favor escribe "Hola" para empezar de nuevo.', { capture: true }, async (ctx, { gotoFlow }) => {
         return gotoFlow(flowPrincipal);
@@ -74,6 +67,7 @@ const flowCalificacion = addKeyword('calificacion')
         }
     });
 
+// Flujo para opciones de "no encontré"
 const flowNo = addKeyword('noencontre')
     .addAnswer('Si no encontraste el producto que deseas, ingresa aquí para hablar con un agente de ventas📲:')
     .addAnswer(`https://api.whatsapp.com/send?phone=${NumVendor}&text=Hola,+quiero+ayuda+con+un+producto+🚗`)
@@ -111,29 +105,24 @@ const flowNo = addKeyword('noencontre')
         }
     });
 
-//const flowLink = addKeyword('pregunta')
-   // .addAnswer(['Encontraste el producto que buscabas?',
-    //    '1. Si',
-     //   '2. No'
-  //  ],
-    //    null,
-    //    null,
-    //    [flowCalificacion, flowNo]);
-
+// Flujo para opciones de "pregunta"
 const flowLink = addKeyword('pregunta')
     .addAnswer(['Encontraste el producto que buscabas?', 
-        '1. Si',
-        '2. No'
-    ], { capture: true, idle: 300000 }, async (ctx, { gotoFlow }) => {
-        if (ctx?.idleFallBack) {
-            return gotoFlow(flujoFinal);
-        }
-        const respuesta = ctx.body;
-    if (respuesta === '1' || respuesta === 'si')  {
-            return gotoFlow(flowCalificacion);
-        } else if (respuesta === '2' || respuesta === 'no') {
-            return gotoFlow(flowNo);
-        }
+        '*Si*',
+        '*No*'
+    ], { capture: true, idle: 60000 }, async (ctx, { gotoFlow }) => {
+     
+        const respuesta = ctx.body.toLowerCase();
+        console.log("Respuesta del cliente:", respuesta);
+          if (ctx?.idleFallBack) {
+           return gotoFlow(flujoFinal);
+       }
+       if (respuesta == 'si') {
+           return gotoFlow(flowCalificacion);
+       }
+       if (respuesta == 'no') {
+              return gotoFlow(flowNo);
+         }
     });
 
 
@@ -141,7 +130,6 @@ const flowLink = addKeyword('pregunta')
 // Flujo para búsqueda de productos para usuarios registrados
 const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
     .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true, idle: 300000 }, async (ctx, { flowDynamic, gotoFlow }) => {
-        // Llamada a la IA para interpretar el mensaje
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
         }
@@ -179,7 +167,6 @@ const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
         if (productos.length > 0) {
             for (const producto of productos) {
                 if (producto) {
-
                     const mensaje = `🚗 *Producto:* ${producto.title}\n💲 *Precio:* ${producto.price}\n 🛒*Comprar:* ${producto.link}`;
                     await flowDynamic(mensaje, { media: producto.image });
                 }
@@ -200,11 +187,10 @@ const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
 const flowEnlace_two = addKeyword('@')
     .addAnswer('Para un mejor resultado por favor escribe el nombre de tu producto más el modelo de vehículo. 🚗🔧')
     .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true, idle: 300000 }, async (ctx, { flowDynamic, gotoFlow }) => {
-        // Llamada a la IA para interpretar el mensaje
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
         }
-        
+
         const NomProd = await interpretarMensaje(ctx.body);
         console.log("Producto interpretado:", NomProd);
         productoGlobal = NomProd;
@@ -238,7 +224,6 @@ const flowEnlace_two = addKeyword('@')
         if (productos.length > 0) {
             for (const producto of productos) {
                 if (producto) {
-
                     const mensaje = `🚗 *Producto:* ${producto.title}\n💲 *Precio:* ${producto.price}\n 🛒*Comprar:* ${producto.link}`;
                     await flowDynamic(mensaje, { media: producto.image });
                 }
@@ -255,55 +240,54 @@ const flowEnlace_two = addKeyword('@')
         }
     });
 
-// Flujo para obtener datos de usuarios no registrados
+    // Flujo para usuarios no registrados
 const flowDatos = addKeyword('USUARIOS_NO_REGISTRADOS')
-    .addAnswer('Es tu primera vez en nuestra tienda en línea. Por favor, proporciona tus datos para continuar. 📝')
-    .addAnswer('Por favor, proporciona tu nombre completo:', { capture: true, idle: 300000 }, async (ctx) => {
-        if (ctx?.idleFallBack) {
-            return gotoFlow(flujoFinal);
-        }
-        const nombre = ctx.body;
-        console.log("Nombre del cliente:", nombre);
-        nombreGlobal = nombre;
-    })
-    .addAnswer('Por favor, proporciona tu correo electrónico:', { capture: true, idle: 30000 }, async (ctx, { fallBack, flowDynamic }) => {
-        if (ctx?.idleFallBack) {
-            return gotoFlow(flujoFinal);
-        }
-        const email = ctx.body;
-        if (!email.includes('@')) {
-            await flowDynamic('Por favor, ingresa un correo electrónico válido. 📧');
-            return fallBack();
-        }
-        const numero = ctx.from;
-        console.log("Correo del cliente:", email);
-        console.log("Número del cliente:", numero);
+.addAnswer('Es tu primera vez en nuestra tienda en línea. Por favor, proporciona tus datos para continuar. 📝')
+.addAnswer('Por favor, proporciona tu nombre completo:', { capture: true, idle: 300000 }, async (ctx) => {
+    if (ctx?.idleFallBack) {
+        return gotoFlow(flujoFinal);
+    }
+    const nombre = ctx.body;
+    console.log("Nombre del cliente:", nombre);
+    nombreGlobal = nombre;
+})
+.addAnswer('Por favor, proporciona tu correo electrónico:', { capture: true, idle: 300000 }, async (ctx, { fallBack, flowDynamic }) => {
+    if (ctx?.idleFallBack) {
+        return gotoFlow(flujoFinal);
+    }
+    const email = ctx.body;
+    if (!email.includes('@')) {
+        await flowDynamic('Por favor, ingresa un correo electrónico válido. 📧');
+        return fallBack();
+    }
+    const numero = ctx.from;
+    console.log("Correo del cliente:", email);
+    console.log("Número del cliente:", numero);
 
-        const sql = 'INSERT INTO clientes (nombre, email, numero) VALUES (?, ?, ?)';
-        const values = [nombreGlobal, email, numero];
+    const sql = 'INSERT INTO clientes (nombre, email, numero) VALUES (?, ?, ?)';
+    const values = [nombreGlobal, email, numero];
 
-        const connection = mysql.createConnection({
-            host: MYSQL_DB_HOST,
-            user: MYSQL_DB_USER,
-            password: MYSQL_DB_PASSWORD,
-            database: MYSQL_DB_NAME,
-            port: MYSQL_DB_PORT,
-        });
-
-        connection.query(sql, values, (err, results) => {
-            if (err) {
-                console.error('Error al insertar datos: ' + err.stack);
-                return;
-            }
-            console.log('Datos insertados con id: ' + results.insertId);
-        });
-
-        connection.end();
+    const connection = mysql.createConnection({
+        host: MYSQL_DB_HOST,
+        user: MYSQL_DB_USER,
+        password: MYSQL_DB_PASSWORD,
+        database: MYSQL_DB_NAME,
+        port: MYSQL_DB_PORT,
     });
 
-// Flujos principales
-// Modifica los flujos existentes para incluir la lógica de inactividad
-const flowComprar = addKeyword(['1', 'comprar', 'producto'])
+    connection.query(sql, values, (err, results) => {
+        if (err) {
+            console.error('Error al insertar datos: ' + err.stack);
+            return;
+        }
+        console.log('Datos insertados con id: ' + results.insertId);
+    });
+
+    connection.end();
+});
+
+// Flujo para comprar producto
+const flowComprar = addKeyword('compra')
     .addAnswer('Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨')
     .addAnswer('Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇')
     .addAnswer('https://daytonaautopartes.com/crear-cuenta')
@@ -342,8 +326,8 @@ const flowComprar = addKeyword(['1', 'comprar', 'producto'])
         });
     });
 
-// Aplica la misma lógica de inactividad a otros flujos según sea necesario
-const flowRastrear = addKeyword(['2', 'rastrear', 'pedido'])
+// Flujo para rastrear pedido
+const flowRastrear = addKeyword('rastrea')
     .addAnswer('Para rastrear tu pedido, por favor ingresa tu número de pedido. 🚚📦', { media: 'https://daytonaautopartes.com/bot/Numero%20de%20Comprobante.png', capture: true, idle: 300000 }, async (ctx, { flowDynamic, gotoFlow }) => {
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
@@ -364,13 +348,13 @@ const flowRastrear = addKeyword(['2', 'rastrear', 'pedido'])
         }
     });
 
-// Asegúrate de incluir el flujo final en el flujo principal
+// Flujo principal
 const flowPrincipal = addKeyword(EVENTS.WELCOME)
     .addAnswer('Hola, soy Dayana tu asistente virtual. ¿En qué puedo ayudarte hoy? 🤖')
     .addAnswer([
-        'Por favor escribe el número de la opción que deseas:',
-        '1. 🛒 Comprar producto',
-        '2. 📦 Rastrear pedido',
+        'Por favor escribe la opción que deseas:',
+        '🛒 *Compra* para comprar un producto',
+        '📦 *Rastrea* para rastrear tu pedido',
     ], { capture: true, idle: 300000 }, async (ctx, { gotoFlow }) => {
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
@@ -379,11 +363,9 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
 
 
 
-
-
 const main = async () => {
     const adapterDB = new MockAdapter();
-    const adapterFlow = createFlow([flowPrincipal, flowDatos, flowEnlace, flowEnlace_two, flowCalificacion, flowComprar, flujoFinal]);
+    const adapterFlow = createFlow([flowPrincipal, flowDatos, flowEnlace, flowEnlace_two, flowCalificacion, flowComprar, flujoFinal, flowRastrear, flowLink, flowNo]);
     const adapterProvider = createProvider(BaileysProvider);
 
     createBot({
