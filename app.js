@@ -124,14 +124,14 @@ const flowLink = addKeyword('pregunta')
     .addAnswer(['Encontraste el producto que buscabas?', 
         '1. Si',
         '2. No'
-    ], { capture: true, idle: 60000 }, async (ctx, { gotoFlow }) => {
+    ], { capture: true, idle: 300000 }, async (ctx, { gotoFlow }) => {
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
         }
         const respuesta = ctx.body;
-        if (respuesta === '1') {
+    if (respuesta === '1' || respuesta === 'si')  {
             return gotoFlow(flowCalificacion);
-        } else if (respuesta === '2') {
+        } else if (respuesta === '2' || respuesta === 'no') {
             return gotoFlow(flowNo);
         }
     });
