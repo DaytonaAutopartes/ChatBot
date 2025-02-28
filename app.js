@@ -17,13 +17,13 @@ const MYSQL_DB_PASSWORD = process.env.MYSQL_DB_PASSWORD;
 const MYSQL_DB_NAME = process.env.MYSQL_DB_NAME;
 const MYSQL_DB_PORT = process.env.MYSQL_DB_PORT || '3306';
 
-const NumVendor = '51945852553';
+const NumVendor = process.env.NUM_VENDOR;
 let nombreGlobal = '';
 let clienteGlobal = '';
-let enlaceGlobal = '';
+
 let productoGlobal = '';
 let url1 = `https://api.whatsapp.com/send?phone=${NumVendor}&text=Hola, Soy ${clienteGlobal} encontre  *${productoGlobal}* en la pagina web, me podrias ayudar`;
-let encodedUrl1 = url1.replace(/ /g, '+');
+
 
 // Flujo final
 const flujoFinal = addKeyword(EVENTS.ACTION)
@@ -112,17 +112,17 @@ const flowLink = addKeyword('pregunta')
         '*No*'
     ], { capture: true, idle: 60000 }, async (ctx, { gotoFlow }) => {
      
-        const respuesta = ctx.body.toLowerCase();
+        const respuesta = ctx.body.trim().toLowerCase();
         console.log("Respuesta del cliente:", respuesta);
-          if (ctx?.idleFallBack) {
-           return gotoFlow(flujoFinal);
-       }
-       if (respuesta == 'si') {
-           return gotoFlow(flowCalificacion);
-       }
-       if (respuesta == 'no') {
-              return gotoFlow(flowNo);
-         }
+        if (ctx?.idleFallBack) {
+            return gotoFlow(flujoFinal);
+        }
+        if (respuesta === 'si') {
+            return gotoFlow(flowCalificacion);
+        }
+        if (respuesta === 'no') {
+            return gotoFlow(flowNo);
+        }
     });
 
 
@@ -184,7 +184,7 @@ const flowEnlace = addKeyword('USUARIOS_REGISTRADOS')
     });
 
 // Flujo para búsqueda de productos para usuarios no registrados
-const flowEnlace_two = addKeyword('@')
+const flowEnlace_two = addKeyword('USUARIO_AGREGADO')
     .addAnswer('Para un mejor resultado por favor escribe el nombre de tu producto más el modelo de vehículo. 🚗🔧')
     .addAnswer('¿Qué producto deseas comprar? 🛍️', { capture: true, idle: 300000 }, async (ctx, { flowDynamic, gotoFlow }) => {
         if (ctx?.idleFallBack) {
@@ -240,64 +240,52 @@ const flowEnlace_two = addKeyword('@')
         }
     });
 
-    // Flujo para usuarios no registrados
-const flowDatos = addKeyword('USUARIOS_NO_REGISTRADOS')
-.addAnswer('Es tu primera vez en nuestra tienda en línea. Por favor, proporciona tus datos para continuar. 📝')
-.addAnswer('Por favor, proporciona tu nombre completo:', { capture: true, idle: 300000 }, async (ctx) => {
-    if (ctx?.idleFallBack) {
-        return gotoFlow(flujoFinal);
-    }
-    const nombre = ctx.body;
-    console.log("Nombre del cliente:", nombre);
-    nombreGlobal = nombre;
-})
-.addAnswer('Por favor, proporciona tu correo electrónico:', { capture: true, idle: 300000 }, async (ctx, { fallBack, flowDynamic }) => {
-    if (ctx?.idleFallBack) {
-        return gotoFlow(flujoFinal);
-    }
-    const email = ctx.body;
-    if (!email.includes('@')) {
-        await flowDynamic('Por favor, ingresa un correo electrónico válido. 📧');
-        return fallBack();
-    }
-    const numero = ctx.from;
-    console.log("Correo del cliente:", email);
-    console.log("Número del cliente:", numero);
-
-    const sql = 'INSERT INTO clientes (nombre, email, numero) VALUES (?, ?, ?)';
-    const values = [nombreGlobal, email, numero];
-
-    const connection = mysql.createConnection({
-        host: MYSQL_DB_HOST,
-        user: MYSQL_DB_USER,
-        password: MYSQL_DB_PASSWORD,
-        database: MYSQL_DB_NAME,
-        port: MYSQL_DB_PORT,
-    });
-
-    connection.query(sql, values, (err, results) => {
-        if (err) {
-            console.error('Error al insertar datos: ' + err.stack);
-            return;
-        }
-        console.log('Datos insertados con id: ' + results.insertId);
-    });
-
-    connection.end();
-});
-
-// Flujo para comprar producto
-const flowComprar = addKeyword('compra')
-    .addAnswer('Recuerda que puedes comprar en nuestra tienda en línea. Es seguro y confiable. 🛒✨')
-    .addAnswer('Para crear una cuenta en nuestra página web y recibir super promociones y descuentos, ingresa al siguiente enlace: 🎁👇')
-    .addAnswer('https://daytonaautopartes.com/crear-cuenta')
-    .addAnswer('Si deseas seguir la atención por este medio escribe "si" 📝', { capture: true, idle: 60000 }, async (ctx, { flowDynamic, gotoFlow }) => {
+    const flowDatos = addKeyword('USUARIOS_NO_REGISTRADOS')
+    .addAnswer('Es tu primera vez en nuestra tienda en línea. Por favor, proporciona tus datos para continuar. 📝')
+    .addAnswer('Por favor, proporciona tu nombre completo:', { capture: true, idle: 300000 }, async (ctx, { fallBack, gotoFlow }) => {
+        console.log("Capturando nombre...");
+        
         if (ctx?.idleFallBack) {
+            console.log("Flujo interrumpido por inactividad");
             return gotoFlow(flujoFinal);
         }
-        console.log(ctx);
-        const numero = ctx.from;
+        
+        if (!ctx.body || ctx.body.trim() === '') {
+            console.log("Nombre no válido");
+            return fallBack('Por favor ingresa un nombre válido.');
+            return;
+        }
 
+        nombreGlobal = ctx.body.trim(); // Guardamos el nombre
+        console.log("Nombre capturado:", nombreGlobal);
+    })
+    .addAnswer('Por favor, proporciona tu correo electrónico:', { capture: true, idle: 300000 }, async (ctx, { fallBack, flowDynamic, gotoFlow }) => {
+        console.log("Capturando correo...");
+        
+        if (ctx?.idleFallBack) {
+            console.log("Flujo interrumpido por inactividad al capturar correo");
+            return gotoFlow(flujoFinal);
+        }
+
+        const email = ctx.body?.trim();
+        console.log("Correo recibido:", email);
+
+        if (!email || !email.includes('@')) {
+            console.log("Correo inválido, solicitando de nuevo...");
+            await flowDynamic('Por favor, ingresa un correo electrónico válido. 📧');
+            return fallBack();
+        }
+
+        const numero = ctx.from;
+        console.log("Datos capturados: Nombre:", nombreGlobal, "| Correo:", email, "| Número:", numero);
+
+        if (!nombreGlobal || nombreGlobal.trim() === '') {
+            console.error('Error: nombreGlobal está vacío en la inserción SQL.');
+            await flowDynamic('Hubo un error con tu nombre. Por favor, vuelve a intentarlo.');
+            return fallBack();
+        }
+
+        // Conexión a la base de datos
         const connection = mysql.createConnection({
             host: MYSQL_DB_HOST,
             user: MYSQL_DB_USER,
@@ -306,25 +294,38 @@ const flowComprar = addKeyword('compra')
             port: MYSQL_DB_PORT,
         });
 
-        const sqlCheck = 'SELECT * FROM clientes WHERE numero = ?';
-        connection.query(sqlCheck, [numero], async (err, results) => {
+        console.log("Intentando insertar en la base de datos...");
+
+        const sql = 'INSERT INTO clientes (nombre, email, numero) VALUES (?, ?, ?)';
+        const values = [nombreGlobal, email, numero];
+
+        connection.query(sql, values, (err, results) => {
             if (err) {
-                console.error('Error al verificar el número: ' + err.stack);
+                console.error('Error al insertar datos en la base de datos:', err.stack);
                 return;
             }
+            console.log('Cliente insertado con id:', results.insertId);
+        });
 
-            if (results.length > 0) {
-                const nombreCliente = results[0].nombre;
-                clienteGlobal = nombreCliente;
-                console.log('Número existe. Nombre del cliente:', nombreCliente);
-                await flowDynamic(`Hola ${clienteGlobal}. Para un mejor resultado por favor escribe el nombre de tu producto más el modelo de vehículo. 🚗🔧`);
-                return gotoFlow(flowEnlace);
+        connection.end((err) => {
+            if (err) {
+                console.error("Error al cerrar la conexión a MySQL:", err.stack);
             } else {
-                console.log('Número no existe');
-                return gotoFlow(flowDatos);
+                console.log("Conexión a MySQL cerrada correctamente.");
             }
         });
+
+        await flowDynamic('¡Gracias! Tus datos han sido registrados exitosamente. ✅');
+        
+        console.log("Pasando al siguiente flujo...");
+        return gotoFlow(flowEnlace_two);
+    
     });
+
+    
+
+// Flujo para comprar producto
+
 
 // Flujo para rastrear pedido
 const flowRastrear = addKeyword('rastrea')
@@ -350,22 +351,61 @@ const flowRastrear = addKeyword('rastrea')
 
 // Flujo principal
 const flowPrincipal = addKeyword(EVENTS.WELCOME)
-    .addAnswer('Hola, soy Dayana tu asistente virtual. ¿En qué puedo ayudarte hoy? 🤖')
+    .addAnswer('👋 Hola, soy Dayana tu asistente virtual. ¿En qué puedo ayudarte hoy? 🤖')
+    .addAnswer('🛍️ Recuerda que puedes comprar fácil y seguro en nuestra página web.')
+    .addAnswer('🔔 Crea una cuenta en nuestra página web para recibir ofertas exclusivas: https://daytonaautopartes.com/iniciar-sesion?create_account=1')
     .addAnswer([
         'Por favor escribe la opción que deseas:',
         '🛒 *Compra* para comprar un producto',
         '📦 *Rastrea* para rastrear tu pedido',
-    ], { capture: true, idle: 300000 }, async (ctx, { gotoFlow }) => {
+    ], { capture: true, idle: 300000 }, async (ctx, { gotoFlow, fallBack, flowDynamic }) => {
         if (ctx?.idleFallBack) {
             return gotoFlow(flujoFinal);
         }
-    }, [flowComprar, flowRastrear]);
+        const opcion = ctx.body.trim().toLowerCase();
+        const numero = ctx.from;
+        if (opcion !== 'compra' && opcion !== 'rastrea') {
+            await flowDynamic('⚠️ Por favor, selecciona una opción válida.');
+            return fallBack();
+        }  
+        if (opcion === 'compra') {
+            const connection = mysql.createConnection({
+                host: MYSQL_DB_HOST,
+                user: MYSQL_DB_USER,
+                password: MYSQL_DB_PASSWORD,
+                database: MYSQL_DB_NAME,
+                port: MYSQL_DB_PORT,
+            });
+    
+            const sqlCheck = 'SELECT * FROM clientes WHERE numero = ?';
+            connection.query(sqlCheck, [numero], async (err, results) => {
+                if (err) {
+                    console.error('Error al verificar el número: ' + err.stack);
+                    return;
+                }
+    
+                if (results.length > 0) {
+                    const nombreCliente = results[0].nombre;
+                    clienteGlobal = nombreCliente;
+                    console.log('Número existe. Nombre del cliente:', nombreCliente);
+                    await flowDynamic(`Hola ${clienteGlobal}. Para un mejor resultado por favor escribe el nombre de tu producto más el modelo de vehículo. 🚗🔧`);
+                    return gotoFlow(flowEnlace);
+                } else {
+                    console.log('Número no existe');
+                    return gotoFlow(flowDatos);
+                }
+            });
+            
+        }
+ 
+
+    }, [flowRastrear]);
 
 
 
 const main = async () => {
     const adapterDB = new MockAdapter();
-    const adapterFlow = createFlow([flowPrincipal, flowDatos, flowEnlace, flowEnlace_two, flowCalificacion, flowComprar, flujoFinal, flowRastrear, flowLink, flowNo]);
+    const adapterFlow = createFlow([flowPrincipal, flowDatos, flowEnlace, flowEnlace_two, flowCalificacion, flujoFinal, flowRastrear, flowLink, flowNo]);
     const adapterProvider = createProvider(BaileysProvider);
 
     createBot({
