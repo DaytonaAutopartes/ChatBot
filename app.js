@@ -3,11 +3,9 @@ const QRPortalWeb = require('@bot-whatsapp/portal');
 const BaileysProvider = require('@bot-whatsapp/provider/baileys');
 const MockAdapter = require('@bot-whatsapp/database/mock');
 const mysql = require('mysql2');
-const { delay } = require('@whiskeysockets/baileys');
 const { chromium } = require('playwright');
 const { interpretarMensaje } = require('./gemini'); // Asegúrate de que esta funcione correctamente
 const { getOrderStatus } = require('./prestashop'); // Asegúrate de que esta funcione correctamente
-const { shortenUrl } = require('./acortar');
 
 require('dotenv').config();
 
@@ -321,11 +319,6 @@ const flowEnlace_two = addKeyword('USUARIO_AGREGADO')
         return gotoFlow(flowEnlace_two);
     
     });
-
-    
-
-// Flujo para comprar producto
-
 
 // Flujo para rastrear pedido
 const flowRastrear = addKeyword('rastrea')

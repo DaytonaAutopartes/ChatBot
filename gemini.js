@@ -10,7 +10,7 @@ async function interpretarMensaje(mensaje) {
         const prompt = `Extrae únicamente el nombre del repuesto (producto de auto) y el modelo de vehículo del siguiente mensaje: "${mensaje}". 
         Devuelve solo un JSON con las claves "producto" y "modelo", sin texto adicional ni etiquetas de código, tampoco año solo producto y modelo. Pero si es un mensaje de solo producto, devolver solo ese campo.`;
 
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
         const result = await model.generateContent(prompt);
         const response = await result.response;
         let text = response.text(); // Extrae la respuesta de texto
@@ -32,5 +32,15 @@ async function interpretarMensaje(mensaje) {
         return mensaje; // Si hay error, devuelve el mensaje original
     }
 }
+async function listarModelos() {
+    try {
+        const models = await genAI.listModels();
+        console.log(models);
+    } catch (error) {
+        console.error("Error al listar modelos:", error);
+    }
+}
+
+listarModelos();
 
 module.exports = { interpretarMensaje };
