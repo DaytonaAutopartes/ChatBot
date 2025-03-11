@@ -32,15 +32,4 @@ async function interpretarMensaje(mensaje) {
         return mensaje; // Si hay error, devuelve el mensaje original
     }
 }
-async function listarModelos() {
-    try {
-        const models = await genAI.listModels();
-        console.log(models);
-    } catch (error) {
-        console.error("Error al listar modelos:", error);
-    }
-}
-
-listarModelos();
-
 module.exports = { interpretarMensaje };
