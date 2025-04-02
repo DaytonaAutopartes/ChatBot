@@ -345,7 +345,7 @@ const flowRastrear = addKeyword('rastrea')
 // Flujo principal
 const flowPrincipal = addKeyword(EVENTS.WELCOME)
     .addAnswer('👋 Hola, soy Dayana tu asistente virtual. ¿En qué puedo ayudarte hoy? 🤖')
-    .addAnswer('🛍️ Recuerda que puedes comprar fácil y seguro en nuestra página web. Gira la ruleta y usa nuestos cupones de descuento al momento de realizar tu pago.', {media: 'https://daytonaautopartes.com/bot/canjea%codigo.png' })
+    .addAnswer('🛍️ Recuerda que puedes comprar fácil y seguro en nuestra página web. Gira la ruleta y usa nuestos cupones de descuento al momento de realizar tu pago.', {media: 'https://daytonaautopartes.com/bot/canjea%20codigo.png' })
     .addAnswer('Además, disfruta del delivery gratis al Courier de tu preferencia. 🚚')
     .addAnswer('🔔 Crea una cuenta en nuestra página web para recibir ofertas exclusivas: https://daytonaautopartes.com/iniciar-sesion?create_account=1')
     .addAnswer([
