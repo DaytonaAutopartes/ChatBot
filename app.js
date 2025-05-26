@@ -105,9 +105,6 @@ const flowSatisfaccion = addKeyword('satisfaccion')
         }
     );
  
-
-    
-
 // Flujo principal
 const flowPrincipal = addKeyword(EVENTS.WELCOME)
     .addAnswer(
