@@ -28,11 +28,6 @@ const MYSQL_DB_PORT = process.env.MYSQL_DB_PORT || '3306';
 const NumVendor = '51945852553'; // Número de WhatsApp del vendedor
 
 
-let productoGlobal = '';
-
-
-// --- Flujos del bot ---
-
 // Flujo final para manejar inactividad
 const flujoFinal = addKeyword(EVENTS.ACTION)
     .addAnswer(
