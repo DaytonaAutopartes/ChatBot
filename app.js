@@ -126,7 +126,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
 
  // ENVÍA MENSAJE AUTOMÁTICO AL NÚMERO ????
                      const numeroDestino = '51945852553@s.whatsapp.net';
-                        const mensajeAuto = `🚨 Nuevo cliente interesado\nWhatsApp: ${ctx.from}\nProducto: ${respuesta}\nEs una prueba`;
+                        const mensajeAuto = `🚨 Nuevo cliente interesado\nWhatsApp: ${ctx.from}\nProducto: ${respuesta}`;
                         if (typeof provider?.sendText === 'function') {
                             try {
                                 const resultadoEnvio = await provider.sendText(numeroDestino, mensajeAuto);
@@ -234,8 +234,10 @@ const main = async () => {
         flow: adapterFlow,
         provider: adapterProvider,
         database: adapterDB,
-    });
-
+    }, {
+    blackList:[51945852553]
+    }
+);
     QRPortalWeb({ port: 3001 });
 };
 
