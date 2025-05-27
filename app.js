@@ -116,7 +116,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
 
             if (respuesta !== 'indefinido') {
 
- // ENVÍA MENSAJE AUTOMÁTICO AL NÚMERO ????
+ // ENVÍA MENSAJE AUTOMÁTICO AL NÚMERO
                      const numeroDestino = '51945852553@s.whatsapp.net';
                         const mensajeAuto = `🚨 Nuevo cliente interesado\nWhatsApp: ${ctx.from}\nProducto: ${respuesta}`;
                         if (typeof provider?.sendText === 'function') {
