@@ -1,0 +1,60 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB0A57EE36938E2AC5872',
+    participant: undefined
+  },
+  messageTimestamp: 1748641563,
+  pushName: 'Miller',
+  broadcast: false,
+  message: Message {
+    conversation: 'hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'hola',
+  from: '51962196883'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_7f7a8c66-765b-4809-9902-9762943969c8',
+  keyword: 'key_a2d790af-060c-45cd-8865-932bc74fc565',
+  answer: 'Hola soy Dayana, ¿en qué puedo ayudarte o qué producto deseas comprar? 🛍️',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: 300000,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '7b654c2010c8d070002aa9620235a299'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '51962196883@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB0A3D7FF89E60ABC597B',
+    participant: undefined
+  },
+  messageTimestamp: 1748641585,
+  pushName: 'Miller',
+  broadcast: false,
+  message: Message {
+    conversation: 'Buen día tendra poncho de palier y poncho de triceta en marca fórmula 1 ...al x mayor',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Buen día tendra poncho de palier y poncho de triceta en marca fórmula 1 ...al x mayor',
+  from: '51962196883'
+}

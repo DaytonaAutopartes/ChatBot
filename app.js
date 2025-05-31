@@ -117,6 +117,8 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
             if (respuesta !== 'indefinido') {
 
  // ENVÍA MENSAJE AUTOMÁTICO AL NÚMERO
+
+
                      const numeroDestino = '51945852553@s.whatsapp.net';
                         const mensajeAuto = `🚨 Nuevo cliente interesado\nWhatsApp: ${ctx.from}\nProducto: ${respuesta}`;
                         if (typeof provider?.sendText === 'function') {
@@ -137,52 +139,62 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
 
                 const verificarTico = await productoEsTico(respuesta);
                 console.log("Verificación de producto:", verificarTico);              
+                // Manejar el caso donde verificarTico es 'indefinido'
                 if (verificarTico === 'indefinido') {
-                    const NomProd = respuesta;
-                    console.log("Producto interpretado:", NomProd);
-                    productoGlobal = NomProd;
+                    let productosInterpretados = Array.isArray(respuesta) ? respuesta : [respuesta];
+                    console.log("Producto(s) interpretado(s):", productosInterpretados);
+                    productoGlobal = productosInterpretados;
+
                     function generarEnlaceDeBusqueda(palabraClave) {
                         const enlaceBusqueda = `https://daytonaautopartes.com/busqueda?s=${encodeURIComponent(palabraClave)}`;
                         console.log("Enlace de búsqueda:", enlaceBusqueda);
                         return enlaceBusqueda;
                     }
-                    
+
                     await flowDynamic('Procesando tu solicitud...⏳');
-                    const palabra = NomProd;
-                    const enlaceCliente = generarEnlaceDeBusqueda(palabra);
 
-                    const browser = await chromium.launch({ headless: true });
-                    const page = await browser.newPage();
-                    await page.goto(enlaceCliente);
+                    let huboResultados = false;
 
-                    const productos = await page.$$eval('article.product-miniature', (results) => results.map((el) => {
-                        const title = el.querySelector('h3.product-title a').innerText;
-                        if (!title) return null;
-                        const image = el.querySelector('img').src;
-                        const price = el.querySelector('span.price').innerText;
-                        const link = el.querySelector('h3.product-title a').href;
-                        return { title, image, price, link };
-                    }));
+                    for (const NomProd of productosInterpretados) {
+                        const enlaceCliente = generarEnlaceDeBusqueda(NomProd);
 
-                    await browser.close();
-                    await flowDynamic('🚨*PARA COMPRAR EL PRODUCTO INGRESA AL LINK*');
-                    if (productos.length > 0) {
-                        for (const producto of productos) {
-                            if (producto) {
-                                const mensaje = `🚗 *Producto:* ${producto.title}\n💲 *Precio:* ${producto.price}\n 🛒*Comprar:* ${producto.link}`;
-                                await flowDynamic(mensaje, { media: producto.image });
+                        const browser = await chromium.launch({ headless: true });
+                        const page = await browser.newPage();
+                        await page.goto(enlaceCliente);
+
+                        const productos = await page.$$eval('article.product-miniature', (results) => results.map((el) => {
+                            const title = el.querySelector('h3.product-title a').innerText;
+                            if (!title) return null;
+                            const image = el.querySelector('img').src;
+                            const price = el.querySelector('span.price').innerText;
+                            const link = el.querySelector('h3.product-title a').href;
+                            return { title, image, price, link };
+                        }));
+
+                        await browser.close();
+
+                        if (productos.length > 0) {
+                            huboResultados = true;
+                            await flowDynamic(`🚨*PARA COMPRAR EL PRODUCTO "${NomProd}" INGRESA AL LINK*`);
+                            for (const producto of productos) {
+                                if (producto) {
+                                    const mensaje = `🚗 *Producto:* ${producto.title}\n💲 *Precio:* ${producto.price}\n 🛒*Comprar:* ${producto.link}`;
+                                    await flowDynamic(mensaje, { media: producto.image });
+                                }
                             }
+                            await flowDynamic('Ingresa aquí para más resultados: ' + enlaceCliente);
+                            const mensaje = await insentivarCompra(NomProd);
+                            await flowDynamic(mensaje);
+                        } else {
+                            // Si no hay resultados, incentivar al cliente a contactar a un agente de ventas
+                            const url = `https://api.whatsapp.com/send?phone=${NumVendor}`;
+                            const insentivarMensaje = await enlaceWhatsapp(url, NomProd);
+                            await flowDynamic(insentivarMensaje);
                         }
-                        await flowDynamic('Ingresa aquí para más resultados: ' + enlaceCliente);
-                        const mensaje = await insentivarCompra(NomProd);
-                        await flowDynamic(mensaje);
+                    }
+
+                    if (huboResultados) {
                         return gotoFlow(flowSatisfaccion);
-                    } else {
-                        // Si no hay resultados, incentivar al cliente a contactar a un agente de ventas
-                        const url = `https://api.whatsapp.com/send?phone=${NumVendor}`;
-                        const insentivarMensaje = await enlaceWhatsapp(url, NomProd);
-                        await flowDynamic(insentivarMensaje);         
-                        // Fin del envío automático
                     }
                 } else {
                     // Si el producto no es válido, enviar un mensaje de error
@@ -228,6 +240,9 @@ const main = async () => {
         database: adapterDB,
     }, {
     blackList:[51945852553]
+    },
+    globalState = {
+        encendido : true,
     }
 );
     QRPortalWeb({ port: 3001 });

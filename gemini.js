@@ -129,7 +129,7 @@ async function interpretarIntencion(mensaje) {
     }
 }
 
-// Función: Interpretar mensaje (extrae producto y modelo)
+/*
 async function interpretarMensaje(mensaje) {
     try {
         const prompt = `Del siguiente mensaje: "${mensaje}", identifica y extrae únicamente el nombre del repuesto (producto de auto) y el modelo de vehículo, si están presentes. 
@@ -157,6 +157,34 @@ async function interpretarMensaje(mensaje) {
     } catch (error) {
         console.error("Error en interpretarMensaje:", error);
         return mensaje;
+    }
+}*/
+
+async function interpretarMensaje(mensaje) {
+    try {
+        const prompt = `Del siguiente mensaje: "${mensaje}", identifica y extrae todos los nombres de repuestos (productos de auto) y los modelos de vehículo, si están presentes.
+Devuelve solo un JSON con la clave "productos", que es un array de objetos con las claves "producto" y "modelo".
+Si solo se menciona el producto, incluye solo ese campo y deja "modelo" vacío.
+Si el mensaje no corresponde a productos o no contiene información relevante, devuelve "productos": [].
+No incluyas texto adicional ni etiquetas de código. No incluyas el año del vehículo.`;
+
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        let text = response.text();
+
+        // Eliminamos posibles etiquetas de código y saltos de línea
+        text = text.replace(/```json|```/g, "").replace(/\n/g, "").trim();
+
+        // Parseamos la respuesta como JSON
+        const data = JSON.parse(text);
+        const productos = data.productos || [];
+
+        // Devuelve un array de strings "producto modelo"
+        return productos.map(p => `${p.producto?.trim() || ""} ${p.modelo?.trim() || ""}`.trim()).filter(Boolean);
+    } catch (error) {
+        console.error("Error en interpretarMensaje:", error);
+        return [];
     }
 }
 
