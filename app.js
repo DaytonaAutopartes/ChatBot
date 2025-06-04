@@ -118,16 +118,19 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
 
  // ENVÍA MENSAJE AUTOMÁTICO AL NÚMERO
 
-
-                     const numeroDestino = '51945852553@s.whatsapp.net';
-                        const mensajeAuto = `🚨 Nuevo cliente interesado\nWhatsApp: ${ctx.from}\nProducto: ${respuesta}`;
+                    // Si numerosDestino es un array, enviar el mensaje a cada número
+                    const numerosDestino = ['51945852553@s.whatsapp.net', '51942021769@s.whatsapp.net'];
+                    const mensajeAuto = `🚨 Nuevo cliente interesado\nWhatsApp: ${ctx.from}\nProducto: ${mensaje}`;
+                    if (Array.isArray(numerosDestino)) {
                         if (typeof provider?.sendText === 'function') {
                             try {
-                                const resultadoEnvio = await provider.sendText(numeroDestino, mensajeAuto);
-                                if (resultadoEnvio && resultadoEnvio.status === 'OK') {
-                                    console.log('Mensaje enviado con éxito:', mensajeAuto);
-                                } else {
-                                    console.log('No se pudo enviar el mensaje. Respuesta:', resultadoEnvio);
+                                for (const numero of numerosDestino) {
+                                    const resultadoEnvio = await provider.sendText(numero, mensajeAuto);
+                                    if (resultadoEnvio && resultadoEnvio.status === 'OK') {
+                                        console.log(`Mensaje enviado con éxito a ${numero}:`, mensajeAuto);
+                                    } else {
+                                        console.log(`No se pudo enviar el mensaje a ${numero}. Respuesta:`, resultadoEnvio);
+                                    }
                                 }
                             } catch (error) {
                                 console.error('Error al enviar el mensaje:', error);
@@ -135,6 +138,23 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
                         } else {
                             console.log('La función sendText no está disponible en el provider.');
                         }
+                    } else {
+                        // Si es un solo número, enviar solo a ese número
+                        if (typeof provider?.sendText === 'function') {
+                            try {
+                                const resultadoEnvio = await provider.sendText(numerosDestino, mensajeAuto);
+                                if (resultadoEnvio && resultadoEnvio.status === 'OK') {
+                                    console.log(`Mensaje enviado con éxito a ${numerosDestino}:`, mensajeAuto);
+                                } else {
+                                    console.log(`No se pudo enviar el mensaje a ${numerosDestino}. Respuesta:`, resultadoEnvio);
+                                }
+                            } catch (error) {
+                                console.error('Error al enviar el mensaje:', error);
+                            }
+                        } else {
+                            console.log('La función sendText no está disponible en el provider.');
+                        }
+                    }
                 // Fin del envío automático
 
                 const verificarTico = await productoEsTico(respuesta);
@@ -203,7 +223,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
                     await flowDynamic(insentivarMensaje);
                 }
             } else {
-                const respuestaGenerada = await generarRespuesta(mensaje, 'no es un producto, que intención tiene el cliente');
+                const respuestaGenerada = await generarRespuesta(mensaje, 'el mensaje no es un nombre de un producto');
                 console.log("Respuesta generada:", respuestaGenerada);
                 await flowDynamic(respuestaGenerada, { capture: true }, { idle: 300000 }, async (ctx, { gotoFlow, endFlow}) => {
                     if (ctx?.idleFallBack) {
