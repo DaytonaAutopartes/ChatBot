@@ -120,7 +120,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
 
                     // Si numerosDestino es un array, enviar el mensaje a cada número
                     const numerosDestino = ['51945852553@s.whatsapp.net', '51942021769@s.whatsapp.net'];
-                    const mensajeAuto = `🚨 Nuevo cliente interesado\nWhatsApp: ${ctx.from}\nProducto: ${mensaje}`;
+                    const mensajeAuto = `🚨 Nuevo cliente interesado\nWhatsApp: +${ctx.from}\nProducto: ${mensaje}`;
                     if (Array.isArray(numerosDestino)) {
                         if (typeof provider?.sendText === 'function') {
                             try {
